@@ -2,7 +2,7 @@
 Esta clase es tan sólo un mock con datos para probar la interfaz
 '''
 from src.logica.FachadaEnForma import FachadaEnForma
-from src.modelo.declarative_base import engine, Base, session
+from src.modelo.declarative_base import Base, session, engine
 from src.modelo.persona import Persona
 
 
