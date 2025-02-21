@@ -110,6 +110,6 @@ class LogicaServiceTestCase(unittest.TestCase):
         entrenamientos = self.logica.dar_entrenamientos(1)
         self.assertTrue(all(ent.persona==1 for ent in entrenamientos))
     
-    def test_dar_personas_organizado(self):
+    def test_dar_entrenamientos_organizado(self):
         entrenamientos = self.logica.dar_entrenamientos(1)
         self.assertEqual(entrenamientos,sorted(entrenamientos,key=lambda p: p.fecha))
