@@ -20,7 +20,7 @@ class LogicaService(FachadaEnForma):
         return lista_personas
 
     def dar_entrenamientos(self, id_persona):
-        return []
+        return [1]
 
     def dar_persona(self, id_persona):
         return
