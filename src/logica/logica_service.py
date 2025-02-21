@@ -3,6 +3,7 @@ Esta clase es tan sólo un mock con datos para probar la interfaz
 '''
 from src.logica.FachadaEnForma import FachadaEnForma
 from src.modelo.declarative_base import Base, session, engine
+from src.modelo.entrenamiento import Entrenamiento
 from src.modelo.persona import Persona
 
 
@@ -20,7 +21,7 @@ class LogicaService(FachadaEnForma):
         return lista_personas
 
     def dar_entrenamientos(self, id_persona):
-        return [1]
+        return session.query(Entrenamiento).all()
 
     def dar_persona(self, id_persona):
         return
