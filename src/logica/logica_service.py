@@ -5,6 +5,7 @@ from src.logica.FachadaEnForma import FachadaEnForma
 from src.modelo.declarative_base import Base, Session, session, engine
 from src.modelo.entrenamiento import Entrenamiento
 from src.modelo.persona import Persona
+from datetime import time
 
 class LogicaService(FachadaEnForma):
 
@@ -24,6 +25,8 @@ class LogicaService(FachadaEnForma):
         return lista_entrenamientos
 
     def crear_entrenamiento(self, persona, ejercicio, fecha, repeticiones, tiempo):
+        if not isinstance(tiempo, time):
+            raise ValueError('El formato de tiempo no es el correcto')
         entrenamiento = Entrenamiento(fecha=fecha,cat_repeticiones=repeticiones,tiempo=tiempo)
         if persona is None or ejercicio is None :
             raise ValueError('El entrenamiento no puede ser generado')
