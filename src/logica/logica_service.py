@@ -25,8 +25,10 @@ class LogicaService(FachadaEnForma):
 
     def crear_entrenamiento(self, persona, ejercicio, fecha, repeticiones, tiempo):
         entrenamiento = Entrenamiento(fecha=fecha,cat_repeticiones=repeticiones,tiempo=tiempo)
+        if persona is not None and ejercicio is not None :
+            entrenamiento.persona = persona.id
+            entrenamiento.ejercicio = ejercicio.id
         session.add(entrenamiento)
         session.commit()
-
     def dar_persona(self, id_persona):
         return

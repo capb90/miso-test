@@ -124,6 +124,5 @@ class LogicaServiceTestCase(unittest.TestCase):
         ejercicio1 = self.session.query(Ejercicio).get(1)
         self.logica.crear_entrenamiento(persona1, ejercicio1, datetime(2025, 2, 20), 12, time(hour=0, minute=10, second=2))
         entrenamientos_asignados = self.session.query(Entrenamiento).order_by(Entrenamiento.id.desc()).first()
-        ejercicio_asignados = self.session.query(Ejercicio).order_by(Ejercicio.id.desc()).first()
         self.assertEqual(entrenamientos_asignados.persona,1)
-        self.assertEqual(ejercicio_asignados.ejercicio,1)
+        self.assertEqual(entrenamientos_asignados.ejercicio,1)
