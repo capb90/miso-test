@@ -127,3 +127,11 @@ class LogicaServiceTestCase(unittest.TestCase):
         entrenamientos_asignados = self.session.query(Entrenamiento).order_by(Entrenamiento.id.desc()).first()
         self.assertEqual(entrenamientos_asignados.persona,1)
         self.assertEqual(entrenamientos_asignados.ejercicio,1)
+
+    def test_validacion_formato_tiempo(self):
+        persona1 = self.session.query(Persona).get(1)
+        ejercicio1 = self.session.query(Ejercicio).get(1)
+        with self.assertRaises(ValueError) as context:
+            self.logica.crear_entrenamiento(persona1, ejercicio1, datetime(2025, 2, 20), 12, None)
+
+        self.assertEqual(str(context.exception), "El formato de tiempo no es el correcto")
