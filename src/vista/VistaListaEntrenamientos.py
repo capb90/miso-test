@@ -174,6 +174,7 @@ class VistaListaEntrenamientos(QWidget):
         """
         Esta función ejecuta el diálogo para crear un nuevo entrenamiento
         """
+        self.hide()
         dialogo=VistaCrearEntrenamiento(None, self.interfaz, self.ejercicios)
         dialogo.exec_()
         if dialogo.resultado==1:
@@ -222,7 +223,7 @@ class VistaListaEntrenamientos(QWidget):
         self.hide()
         self.interfaz.mostrar_vista_lista_personas()
 
-    def error_clave(self, error):
+    def error(self, error):
             mensaje_error=QMessageBox()
             mensaje_error.setIcon(QMessageBox.Question)
             mensaje_error.setText("Error : " + error)

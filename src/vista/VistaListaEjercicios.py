@@ -96,6 +96,7 @@ class VistaListaEjercicios(QWidget):
         """
         Esta función muestra la lista de ejercicios
         """
+        self.limpiar_grid_layout()
         self.ejercicios = lista_ejercicios
 
         #Ciclo para poblar la tabla
@@ -169,6 +170,14 @@ class VistaListaEjercicios(QWidget):
         """
         self.hide()
         self.interfaz.mostrar_vista_lista_personas()
+
+    def limpiar_grid_layout(self):
+        # Recorremos todos los elementos en el layout
+        layout = self.distribuidor_tabla_ejercicios
+        while layout.count():
+            item = layout.takeAt(0)  # Tomamos el primer elemento
+            if item.widget():
+                item.widget().deleteLater()  # Eliminamos el widget si existe
 
     def error(self, error):
             mensaje_error=QMessageBox()
