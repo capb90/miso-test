@@ -103,7 +103,7 @@ class LogicaServiceTestCase(unittest.TestCase):
         entrenamientos = self.logica.dar_entrenamientos(1)
         entreno = entrenamientos[0]
         ejercicio_id = entreno.ejercicio
-        nombre_ejercicio = self.session.get(Ejercicio,ejercicio_id).nombre
+        nombre_ejercicio = self.session.query(Ejercicio).get(ejercicio_id).nombre
         self.assertEqual(nombre_ejercicio, "Press de banca")
 
     def test_comprobar_asociacion_entrenamientos(self):
@@ -118,3 +118,12 @@ class LogicaServiceTestCase(unittest.TestCase):
         self.logica.crear_entrenamiento(None,None,datetime(2025, 2, 20),12,time(hour=0, minute=10, second=2))
         entrenamientos = self.session.query(Entrenamiento).all()
         self.assertEqual(len(entrenamientos),5)
+
+    def test_asignacion_entrenamientos(self):
+        persona1 = self.session.query(Persona).get(1)
+        ejercicio1 = self.session.query(Ejercicio).get(1)
+        self.logica.crear_entrenamiento(persona1, ejercicio1, datetime(2025, 2, 20), 12, time(hour=0, minute=10, second=2))
+        entrenamientos_asignados = self.session.query(Entrenamiento).order_by(Entrenamiento.id.desc()).first()
+        ejercicio_asignados = self.session.query(Ejercicio).order_by(Ejercicio.id.desc()).first()
+        self.assertEqual(entrenamientos_asignados.persona,1)
+        self.assertEqual(ejercicio_asignados.ejercicio,1)
