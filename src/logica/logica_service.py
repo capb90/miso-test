@@ -16,6 +16,7 @@ class LogicaService(FachadaEnForma):
 
     def dar_personas(self):
         lista_personas = session.query(Persona).all()
+        lista_personas = sorted(lista_personas,key=lambda p: p.nombre)
         return lista_personas
 
     def dar_persona(self, id_persona):
