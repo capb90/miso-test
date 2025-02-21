@@ -90,3 +90,7 @@ class LogicaServiceTestCase(unittest.TestCase):
     def test_dar_personas_organizado(self):
         personas = self.logica.dar_personas()
         self.assertEqual(personas,sorted(personas,key=lambda p: p.nombre))
+    
+    def test_dar_entrenamientos_listado(self):
+        entrenamientos = self.logica.dar_entrenamientos(1)
+        self.assertIsInstance(entrenamientos, list)
