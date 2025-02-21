@@ -114,10 +114,11 @@ class LogicaServiceTestCase(unittest.TestCase):
         entrenamientos = self.logica.dar_entrenamientos(1)
         self.assertEqual(entrenamientos,sorted(entrenamientos,key=lambda p: p.fecha))
 
-    def test_cantidad_entrenamientos(self):
-        self.logica.crear_entrenamiento(None,None,datetime(2025, 2, 20),12,time(hour=0, minute=10, second=2))
-        entrenamientos = self.session.query(Entrenamiento).all()
-        self.assertEqual(len(entrenamientos),5)
+    def test_crear_entrenamientos_sin_asignacion(self):
+        with self.assertRaises(ValueError) as context:
+            self.logica.crear_entrenamiento(None, None, datetime(2025, 2, 20), 12, time(hour=0, minute=10, second=2))
+
+        self.assertEqual(str(context.exception), "El entrenamiento no puede ser generado")
 
     def test_asignacion_entrenamientos(self):
         persona1 = self.session.query(Persona).get(1)
