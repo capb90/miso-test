@@ -94,3 +94,7 @@ class LogicaServiceTestCase(unittest.TestCase):
     def test_dar_entrenamientos_listado(self):
         entrenamientos = self.logica.dar_entrenamientos(1)
         self.assertIsInstance(entrenamientos, list)
+    
+    def test_dar_entrenameintos_listado_no_vacio(self):
+        entrenamientos = self.logica.dar_entrenamientos(1)
+        self.assertNotEquals(len(entrenamientos), 0 )
