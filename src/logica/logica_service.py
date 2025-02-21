@@ -15,7 +15,8 @@ class LogicaService(FachadaEnForma):
 
 
     def dar_personas(self):
-        return []
+        lista_personas = session.query(Persona).all()
+        return lista_personas
 
     def dar_persona(self, id_persona):
         return
