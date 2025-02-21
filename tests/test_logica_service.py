@@ -105,3 +105,7 @@ class LogicaServiceTestCase(unittest.TestCase):
         ejercicio_id = entreno.ejercicio
         nombre_ejercicio = self.session.query(Ejercicio).get(ejercicio_id).nombre
         self.assertEqual(nombre_ejercicio, "Press de banca")
+
+    def test_comprobar_asociacion_entrenamientos(self):
+        entrenamientos = self.logica.dar_entrenamientos(1)
+        self.assertTrue(all(ent.Persona==1 for ent in entrenamientos))
