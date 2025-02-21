@@ -27,9 +27,9 @@ class LogicaService(FachadaEnForma):
     def crear_entrenamiento(self, persona, ejercicio, fecha, repeticiones, tiempo):
         if not isinstance(tiempo, time):
             raise ValueError('El formato de tiempo no es el correcto')
-        entrenamiento = Entrenamiento(fecha=fecha,cat_repeticiones=repeticiones,tiempo=tiempo)
         if persona is None or ejercicio is None :
             raise ValueError('El entrenamiento no puede ser generado')
+        entrenamiento = Entrenamiento(fecha=fecha,cat_repeticiones=repeticiones,tiempo=tiempo)
         entrenamiento.persona = persona.id
         entrenamiento.ejercicio = ejercicio.id
         session.add(entrenamiento)
