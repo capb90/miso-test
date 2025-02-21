@@ -44,10 +44,10 @@ class LogicaServiceTestCase(unittest.TestCase):
 
         #Creacion Entrenamientos
 
-        entrenamiento1 = Entrenamiento(fecha=datetime.today(),cat_repeticiones=12,tiempo=time(hour=0, minute=10, second=2))
-        entrenamiento2 = Entrenamiento(fecha=datetime.today(),cat_repeticiones=8,tiempo=time(hour=0, minute=5, second=2))
-        entrenamiento3 = Entrenamiento(fecha=datetime.today(), cat_repeticiones=5,tiempo=time(hour=0, minute=8, second=0))
-        entrenamiento4 = Entrenamiento(fecha=datetime.today(), cat_repeticiones=15,tiempo=time(hour=0, minute=12, second=0))
+        entrenamiento1 = Entrenamiento(fecha=datetime.date(2024, 12, 25),cat_repeticiones=12,tiempo=time(hour=0, minute=10, second=2))
+        entrenamiento2 = Entrenamiento(fecha=datetime.date(2024, 12, 20),cat_repeticiones=8,tiempo=time(hour=0, minute=5, second=2))
+        entrenamiento3 = Entrenamiento(fecha=datetime.date(2024, 12, 21), cat_repeticiones=5,tiempo=time(hour=0, minute=8, second=0))
+        entrenamiento4 = Entrenamiento(fecha=datetime.date(2024, 12, 27), cat_repeticiones=15,tiempo=time(hour=0, minute=12, second=0))
         self.session.add(entrenamiento1)
         self.session.add(entrenamiento2)
         self.session.add(entrenamiento3)
@@ -109,3 +109,7 @@ class LogicaServiceTestCase(unittest.TestCase):
     def test_comprobar_asociacion_entrenamientos(self):
         entrenamientos = self.logica.dar_entrenamientos(1)
         self.assertTrue(all(ent.persona==1 for ent in entrenamientos))
+    
+    def test_dar_personas_organizado(self):
+        entrenamientos = self.logica.dar_entrenamientos(1)
+        self.assertEqual(entrenamientos,sorted(entrenamientos,key=lambda p: p.fecha))
