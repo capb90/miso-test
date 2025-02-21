@@ -86,3 +86,7 @@ class LogicaServiceTestCase(unittest.TestCase):
     def test_dar_persona_listado_no_vacio(self):
         personas = self.logica.dar_personas()
         self.assertNotEquals(len(personas), 0 )
+
+    def test_dar_personas_organizado(self):
+        personas = self.logica.dar_personas()
+        self.assertEqual(personas,sorted(personas,key=lambda p: p.nombre))
