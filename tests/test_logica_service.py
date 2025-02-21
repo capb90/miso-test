@@ -108,4 +108,4 @@ class LogicaServiceTestCase(unittest.TestCase):
 
     def test_comprobar_asociacion_entrenamientos(self):
         entrenamientos = self.logica.dar_entrenamientos(1)
-        self.assertTrue(all(ent.Persona==1 for ent in entrenamientos))
+        self.assertTrue(all(ent.persona==1 for ent in entrenamientos))
