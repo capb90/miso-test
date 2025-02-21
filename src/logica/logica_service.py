@@ -15,7 +15,7 @@ class LogicaService(FachadaEnForma):
 
 
     def dar_personas(self):
-        return
+        return []
 
     def dar_persona(self, id_persona):
         return
