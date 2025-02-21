@@ -21,7 +21,7 @@ class LogicaService(FachadaEnForma):
         return lista_personas
 
     def dar_entrenamientos(self, id_persona):
-        return session.query(Entrenamiento).all()
+        return session.query(Entrenamiento).filter(Entrenamiento.persona==id_persona).all()
 
     def dar_persona(self, id_persona):
         return
