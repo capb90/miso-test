@@ -2,7 +2,7 @@ import unittest
 from datetime import datetime, time
 
 from src.logica.logica_service import LogicaService
-from src.modelo.declarative_base import Session
+from src.modelo.declarative_base import Session, session
 from src.modelo.persona import Persona
 from src.modelo.ejercicio import Ejercicio
 from src.modelo.entrenamiento import Entrenamiento
@@ -113,3 +113,10 @@ class LogicaServiceTestCase(unittest.TestCase):
     def test_dar_entrenamientos_organizado(self):
         entrenamientos = self.logica.dar_entrenamientos(1)
         self.assertEqual(entrenamientos,sorted(entrenamientos,key=lambda p: p.fecha))
+
+    def test_cantidad_entrenamientos(self):
+        persona1 = self.session.query(Persona).get(1)
+        ejercicio1 = self.session.query(Ejercicio).get(1)
+        self.logica.crear_entrenamiento(persona1,ejercicio1,datetime(2025, 2, 20),12,time(hour=0, minute=10, second=2))
+        entrenamientos = session.query(Entrenamiento).all()
+        self.assertEqual(len(entrenamientos),4)
