@@ -98,3 +98,10 @@ class LogicaServiceTestCase(unittest.TestCase):
     def test_dar_entrenameintos_listado_no_vacio(self):
         entrenamientos = self.logica.dar_entrenamientos(1)
         self.assertNotEquals(len(entrenamientos), 0 )
+    
+    def test_regresar_entrenamientos(self):
+        entrenamientos = self.logica.dar_entrenamientos(1)
+        entreno = entrenamientos[0]
+        ejercicio_id = entreno.ejercicio
+        nombre_ejercicio = self.session.query(Ejercicio).get(ejercicio_id).nombre
+        self.assertEqual(nombre_ejercicio, "Press de banca")
