@@ -19,5 +19,8 @@ class LogicaService(FachadaEnForma):
         lista_personas = sorted(lista_personas,key=lambda p: p.nombre)
         return lista_personas
 
+    def dar_entrenamientos(self, id_persona):
+        return []
+
     def dar_persona(self, id_persona):
         return
