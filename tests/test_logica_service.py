@@ -116,5 +116,5 @@ class LogicaServiceTestCase(unittest.TestCase):
 
     def test_cantidad_entrenamientos(self):
         self.logica.crear_entrenamiento(None,None,datetime(2025, 2, 20),12,time(hour=0, minute=10, second=2))
-        entrenamientos = session.query(Entrenamiento).all()
+        entrenamientos = self.session.query(Entrenamiento).all()
         self.assertEqual(len(entrenamientos),5)
