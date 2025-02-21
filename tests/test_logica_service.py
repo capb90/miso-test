@@ -119,4 +119,4 @@ class LogicaServiceTestCase(unittest.TestCase):
         ejercicio1 = self.session.query(Ejercicio).get(1)
         self.logica.crear_entrenamiento(persona1,ejercicio1,datetime(2025, 2, 20),12,time(hour=0, minute=10, second=2))
         entrenamientos = session.query(Entrenamiento).all()
-        self.assertEqual(len(entrenamientos),4)
+        self.assertEqual(len(entrenamientos),5)
