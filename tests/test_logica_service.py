@@ -85,7 +85,7 @@ class LogicaServiceTestCase(unittest.TestCase):
 
     def test_dar_persona_listado_no_vacio(self):
         personas = self.logica.dar_personas()
-        self.assertNotEquals(len(personas), 0 )
+        self.assertNotEqual(len(personas), 0 )
 
     def test_dar_personas_organizado(self):
         personas = self.logica.dar_personas()
@@ -97,13 +97,13 @@ class LogicaServiceTestCase(unittest.TestCase):
     
     def test_dar_entrenameintos_listado_no_vacio(self):
         entrenamientos = self.logica.dar_entrenamientos(1)
-        self.assertNotEquals(len(entrenamientos), 0 )
+        self.assertNotEqual(len(entrenamientos), 0 )
     
     def test_regresar_entrenamientos(self):
         entrenamientos = self.logica.dar_entrenamientos(1)
         entreno = entrenamientos[0]
         ejercicio_id = entreno.ejercicio
-        nombre_ejercicio = self.session.query(Ejercicio).get(ejercicio_id).nombre
+        nombre_ejercicio = self.session.get(Ejercicio,ejercicio_id).nombre
         self.assertEqual(nombre_ejercicio, "Press de banca")
 
     def test_comprobar_asociacion_entrenamientos(self):
@@ -115,8 +115,6 @@ class LogicaServiceTestCase(unittest.TestCase):
         self.assertEqual(entrenamientos,sorted(entrenamientos,key=lambda p: p.fecha))
 
     def test_cantidad_entrenamientos(self):
-        persona1 = self.session.query(Persona).get(1)
-        ejercicio1 = self.session.query(Ejercicio).get(1)
-        self.logica.crear_entrenamiento(persona1,ejercicio1,datetime(2025, 2, 20),12,time(hour=0, minute=10, second=2))
+        self.logica.crear_entrenamiento(None,None,datetime(2025, 2, 20),12,time(hour=0, minute=10, second=2))
         entrenamientos = session.query(Entrenamiento).all()
         self.assertEqual(len(entrenamientos),5)
