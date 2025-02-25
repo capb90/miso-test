@@ -10,7 +10,6 @@ if __name__ == '__main__':
     # Punto inicial de la aplicación
     src.modelo.declarative_base.IS_TEST = False
 
-    # logica = LogicaMock()
     logica = LogicaService()
 
     app = App_EnForma(sys.argv, logica)
