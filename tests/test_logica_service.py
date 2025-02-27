@@ -171,3 +171,8 @@ class LogicaServiceTestCase(unittest.TestCase):
             self.logica.crear_ejercicio("Sentadilla", "Lorem ipsum", "https://ejercicio.com", "160")
         except ValueError as context:
             self.fail(f"Error en el metodo crear_ejercicio: {context}")
+
+    def test_crear_ejercicio_verificar_almacenamiento(self):
+        self.logica.crear_ejercicio("Sentadilla_Test", "Lorem ipsum", "https://ejercicio.com", "160")
+        serch_ejercicio = self.session.query(Ejercicio).filter(Ejercicio.nombre=="Sentadilla_Test").first()
+        self.assertNotEqual(serch_ejercicio, None)
