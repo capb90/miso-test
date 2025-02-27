@@ -145,3 +145,7 @@ class LogicaServiceTestCase(unittest.TestCase):
     def test_validar_crear_ejercicio_nombre(self):
         response = self.logica.validar_crear_editar_ejercicio(None, "Lorem ipsum", "https://ejercicio.com", 160)
         self.assertEqual(response, "El nombre es obligatorio")
+
+    def test_validar_crear_ejercicio_descripcion(self):
+        response = self.logica.validar_crear_editar_ejercicio("Sentadilla", None, "https://ejercicio.com", 160)
+        self.assertEqual(response, "La descripcion es obligatoria")
