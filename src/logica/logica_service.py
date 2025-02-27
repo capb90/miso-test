@@ -47,7 +47,7 @@ class LogicaService(FachadaEnForma):
             return "El link del video es obligatorio"
         if calorias is None:
             return "La cantidad de calorias es obligatorio"
-        if not calorias.isdigit():
+        if not calorias.isdigit() or not isinstance(float(calorias),(float,int)):
             return "La cantidad de calorias debe ser un valor numerico"
 
         return ""
