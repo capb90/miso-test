@@ -51,5 +51,8 @@ class LogicaService(FachadaEnForma):
 
         return ""
 
+    def crear_ejercicio(self, nombre, descripcion, enlace, calorias):
+        return
+
     def dar_persona(self, id_persona):
         return
