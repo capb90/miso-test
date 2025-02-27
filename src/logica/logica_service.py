@@ -46,8 +46,10 @@ class LogicaService(FachadaEnForma):
             return "El link del video es obligatorio"
         if calorias is None:
             return "La cantidad de clarias es obligatorio"
+        if not isinstance(calorias, int):
+            return "La cantidad de calorias debe ser un valor numerico"
 
-        return "La cantidad de calorias debe ser un valor numerico"
+        return ""
 
     def dar_persona(self, id_persona):
         return
