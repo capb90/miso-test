@@ -38,7 +38,7 @@ class LogicaService(FachadaEnForma):
         session.commit()
 
     def validar_crear_editar_ejercicio(self, nombre, descripcion, enlace, calorias):
-        return ''
+        return 'El nombre es obligatorio'
 
     def dar_persona(self, id_persona):
         return
