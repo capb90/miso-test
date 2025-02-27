@@ -165,3 +165,9 @@ class LogicaServiceTestCase(unittest.TestCase):
     def test_validar_crear_ejercicio_exitoso(self):
         response = self.logica.validar_crear_editar_ejercicio("Sentadilla", "Lorem ipsum", "https://ejercicio.com", "12")
         self.assertEqual(response, "")
+
+    def test_crear_ejercicio(self):
+        try:
+            self.logica.crear_ejercicio("Sentadilla", "Lorem ipsum", "https://ejercicio.com", "160")
+        except ValueError as context:
+            self.fail(f"Error en el metodo crear_ejercicio: {context}")
