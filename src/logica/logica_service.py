@@ -5,6 +5,7 @@ from wsgiref.util import request_uri
 
 from src.logica.FachadaEnForma import FachadaEnForma
 from src.modelo.declarative_base import Base, Session, session, engine
+from src.modelo.ejercicio import Ejercicio
 from src.modelo.entrenamiento import Entrenamiento
 from src.modelo.persona import Persona
 from datetime import time
@@ -52,7 +53,13 @@ class LogicaService(FachadaEnForma):
         return ""
 
     def crear_ejercicio(self, nombre, descripcion, enlace, calorias):
-        return
+        try:
+            ejercicio = Ejercicio(nombre=nombre,descripcion=descripcion,calorias=float(calorias),enlace_video=enlace)
+            session.add(ejercicio)
+            session.commit()
+        except ValueError as e:
+            raise e
+
 
     def dar_persona(self, id_persona):
         return
