@@ -149,3 +149,7 @@ class LogicaServiceTestCase(unittest.TestCase):
     def test_validar_crear_ejercicio_descripcion(self):
         response = self.logica.validar_crear_editar_ejercicio("Sentadilla", None, "https://ejercicio.com", 160)
         self.assertEqual(response, "La descripcion es obligatoria")
+
+    def test_validar_crear_ejercicio_enlace(self):
+        response = self.logica.validar_crear_editar_ejercicio("Sentadilla", "Lorem ipsum", None, 160)
+        self.assertEqual(response, "El link del video es obligatorio")
