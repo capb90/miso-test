@@ -135,3 +135,9 @@ class LogicaServiceTestCase(unittest.TestCase):
             self.logica.crear_entrenamiento(persona1, ejercicio1, datetime(2025, 2, 20), 12, None)
 
         self.assertEqual(str(context.exception), "El formato de tiempo no es el correcto")
+
+    def test_validar_crear_ejercicio(self):
+        try:
+            self.logica.validar_crear_editar_ejercicio("Sentadilla", "Lorem ipsum", "https://ejercicio.com", 160)
+        except ValueError as context:
+            self.fail(f"Error en el metodo validar_crear_editar_ejercicio: {context}")
