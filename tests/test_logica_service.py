@@ -141,3 +141,7 @@ class LogicaServiceTestCase(unittest.TestCase):
             self.logica.validar_crear_editar_ejercicio("Sentadilla", "Lorem ipsum", "https://ejercicio.com", 160)
         except ValueError as context:
             self.fail(f"Error en el metodo validar_crear_editar_ejercicio: {context}")
+
+    def test_validar_crear_ejercicio_nombre(self):
+        response = self.logica.validar_crear_editar_ejercicio(None, "Lorem ipsum", "https://ejercicio.com", 160)
+        self.assertEqual(response, "El nombre es obligatorio")
