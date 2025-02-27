@@ -138,20 +138,20 @@ class LogicaServiceTestCase(unittest.TestCase):
 
     def test_validar_crear_ejercicio(self):
         try:
-            self.logica.validar_crear_editar_ejercicio("Sentadilla", "Lorem ipsum", "https://ejercicio.com", 160)
+            self.logica.validar_crear_editar_ejercicio("Sentadilla", "Lorem ipsum", "https://ejercicio.com", "160")
         except ValueError as context:
             self.fail(f"Error en el metodo validar_crear_editar_ejercicio: {context}")
 
     def test_validar_crear_ejercicio_nombre(self):
-        response = self.logica.validar_crear_editar_ejercicio(None, "Lorem ipsum", "https://ejercicio.com", 160)
+        response = self.logica.validar_crear_editar_ejercicio(None, "Lorem ipsum", "https://ejercicio.com", "160")
         self.assertEqual(response, "El nombre es obligatorio")
 
     def test_validar_crear_ejercicio_descripcion(self):
-        response = self.logica.validar_crear_editar_ejercicio("Sentadilla", None, "https://ejercicio.com", 160)
+        response = self.logica.validar_crear_editar_ejercicio("Sentadilla", None, "https://ejercicio.com", "160")
         self.assertEqual(response, "La descripcion es obligatoria")
 
     def test_validar_crear_ejercicio_enlace(self):
-        response = self.logica.validar_crear_editar_ejercicio("Sentadilla", "Lorem ipsum", None, 160)
+        response = self.logica.validar_crear_editar_ejercicio("Sentadilla", "Lorem ipsum", None, "160")
         self.assertEqual(response, "El link del video es obligatorio")
 
     def test_validar_crear_ejercicio_calorias(self):
@@ -159,9 +159,9 @@ class LogicaServiceTestCase(unittest.TestCase):
         self.assertEqual(response, "La cantidad de clarias es obligatorio")
 
     def test_validar_crear_ejercicio_calorias_numerico(self):
-        response = self.logica.validar_crear_editar_ejercicio("Sentadilla", "Lorem ipsum", "https://ejercicio.com", "12")
+        response = self.logica.validar_crear_editar_ejercicio("Sentadilla", "Lorem ipsum", "https://ejercicio.com", "Lorem ipsum")
         self.assertEqual(response, "La cantidad de calorias debe ser un valor numerico")
 
     def test_validar_crear_ejercicio_exitoso(self):
-        response = self.logica.validar_crear_editar_ejercicio("Sentadilla", "Lorem ipsum", "https://ejercicio.com", 12)
+        response = self.logica.validar_crear_editar_ejercicio("Sentadilla", "Lorem ipsum", "https://ejercicio.com", "12")
         self.assertEqual(response, "")
