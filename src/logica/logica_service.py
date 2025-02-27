@@ -1,6 +1,8 @@
 '''
 Esta clase es tan sólo un mock con datos para probar la interfaz
 '''
+from wsgiref.util import request_uri
+
 from src.logica.FachadaEnForma import FachadaEnForma
 from src.modelo.declarative_base import Base, Session, session, engine
 from src.modelo.entrenamiento import Entrenamiento
@@ -34,5 +36,9 @@ class LogicaService(FachadaEnForma):
         entrenamiento.ejercicio = ejercicio.id
         session.add(entrenamiento)
         session.commit()
+
+    def validar_crear_editar_ejercicio(self, nombre, descripcion, enlace, calorias):
+        return ''
+
     def dar_persona(self, id_persona):
         return
