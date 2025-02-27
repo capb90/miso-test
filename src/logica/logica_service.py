@@ -1,8 +1,11 @@
 '''
 Esta clase es tan sólo un mock con datos para probar la interfaz
 '''
+from wsgiref.util import request_uri
+
 from src.logica.FachadaEnForma import FachadaEnForma
 from src.modelo.declarative_base import Base, Session, session, engine
+from src.modelo.ejercicio import Ejercicio
 from src.modelo.entrenamiento import Entrenamiento
 from src.modelo.persona import Persona
 from datetime import time
@@ -34,5 +37,29 @@ class LogicaService(FachadaEnForma):
         entrenamiento.ejercicio = ejercicio.id
         session.add(entrenamiento)
         session.commit()
+
+    def validar_crear_editar_ejercicio(self, nombre, descripcion, enlace, calorias):
+        if nombre is None:
+            return "El nombre es obligatorio"
+        if descripcion is None:
+            return "La descripcion es obligatoria"
+        if enlace is None:
+            return "El link del video es obligatorio"
+        if calorias is None:
+            return "La cantidad de calorias es obligatorio"
+        if not calorias.isdigit():
+            return "La cantidad de calorias debe ser un valor numerico"
+
+        return ""
+
+    def crear_ejercicio(self, nombre, descripcion, enlace, calorias):
+        try:
+            ejercicio = Ejercicio(nombre=nombre,descripcion=descripcion,calorias=float(calorias),enlace_video=enlace)
+            session.add(ejercicio)
+            session.commit()
+        except ValueError as e:
+            raise e
+
+
     def dar_persona(self, id_persona):
         return

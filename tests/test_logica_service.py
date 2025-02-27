@@ -135,3 +135,44 @@ class LogicaServiceTestCase(unittest.TestCase):
             self.logica.crear_entrenamiento(persona1, ejercicio1, datetime(2025, 2, 20), 12, None)
 
         self.assertEqual(str(context.exception), "El formato de tiempo no es el correcto")
+
+    def test_validar_crear_ejercicio(self):
+        try:
+            self.logica.validar_crear_editar_ejercicio("Sentadilla", "Lorem ipsum", "https://ejercicio.com", "160")
+        except ValueError as context:
+            self.fail(f"Error en el metodo validar_crear_editar_ejercicio: {context}")
+
+    def test_validar_crear_ejercicio_nombre(self):
+        response = self.logica.validar_crear_editar_ejercicio(None, "Lorem ipsum", "https://ejercicio.com", "160")
+        self.assertEqual(response, "El nombre es obligatorio")
+
+    def test_validar_crear_ejercicio_descripcion(self):
+        response = self.logica.validar_crear_editar_ejercicio("Sentadilla", None, "https://ejercicio.com", "160")
+        self.assertEqual(response, "La descripcion es obligatoria")
+
+    def test_validar_crear_ejercicio_enlace(self):
+        response = self.logica.validar_crear_editar_ejercicio("Sentadilla", "Lorem ipsum", None, "160")
+        self.assertEqual(response, "El link del video es obligatorio")
+
+    def test_validar_crear_ejercicio_calorias(self):
+        response = self.logica.validar_crear_editar_ejercicio("Sentadilla", "Lorem ipsum", "https://ejercicio.com", None)
+        self.assertEqual(response, "La cantidad de calorias es obligatorio")
+
+    def test_validar_crear_ejercicio_calorias_numerico(self):
+        response = self.logica.validar_crear_editar_ejercicio("Sentadilla", "Lorem ipsum", "https://ejercicio.com", "Lorem ipsum")
+        self.assertEqual(response, "La cantidad de calorias debe ser un valor numerico")
+
+    def test_validar_crear_ejercicio_exitoso(self):
+        response = self.logica.validar_crear_editar_ejercicio("Sentadilla", "Lorem ipsum", "https://ejercicio.com", "12")
+        self.assertEqual(response, "")
+
+    def test_crear_ejercicio(self):
+        try:
+            self.logica.crear_ejercicio("Sentadilla", "Lorem ipsum", "https://ejercicio.com", "160")
+        except ValueError as context:
+            self.fail(f"Error en el metodo crear_ejercicio: {context}")
+
+    def test_crear_ejercicio_verificar_almacenamiento(self):
+        self.logica.crear_ejercicio("Sentadilla_Test", "Lorem ipsum", "https://ejercicio.com", "160")
+        serch_ejercicio = self.session.query(Ejercicio).filter(Ejercicio.nombre=="Sentadilla_Test").first()
+        self.assertNotEqual(serch_ejercicio, None)
