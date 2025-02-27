@@ -42,6 +42,7 @@ class LogicaService(FachadaEnForma):
             return "El nombre es obligatorio"
         if descripcion is None:
             return "La descripcion es obligatoria"
+        return "El link del video es obligatorio"
 
     def dar_persona(self, id_persona):
         return
