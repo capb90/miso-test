@@ -161,3 +161,7 @@ class LogicaServiceTestCase(unittest.TestCase):
     def test_validar_crear_ejercicio_calorias_numerico(self):
         response = self.logica.validar_crear_editar_ejercicio("Sentadilla", "Lorem ipsum", "https://ejercicio.com", "12")
         self.assertEqual(response, "La cantidad de calorias debe ser un valor numerico")
+
+    def test_validar_crear_ejercicio_exitoso(self):
+        response = self.logica.validar_crear_editar_ejercicio("Sentadilla", "Lorem ipsum", "https://ejercicio.com", 12)
+        self.assertEqual(response, "")
