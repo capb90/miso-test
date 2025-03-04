@@ -31,6 +31,9 @@ jobs:
     name: Automerge
     needs: test
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
     steps:
       - name: merge-to-develop
         uses: tukasz/direct-merge-action@master
