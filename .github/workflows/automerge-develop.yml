@@ -9,6 +9,7 @@ jobs:
   test:
     name: Test
     uses: ./.github/workflows/test.yml
+
   merge:
     name: Automerge
     needs: test
@@ -24,4 +25,31 @@ jobs:
           source-branch: ${{ github.ref_name }}
           target-branch: 'develop'
           commit-message: ${{github.event.head_commit.message}}
+
+  release:
+    name: Create-branch
+    needs: merge
+    if: ${{ contains(github.event.head_commit.message, '[deploy]') }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout de repositorio
+        uses: actions/checkout@v2
+        with:
+          token: '${{ secrets.GH_PAT }}'
+
+      - name: Git Semantic Version
+        id: version
+        uses: paulhatch/semantic-version@v5.4.0
+        with:
+          major_pattern: "(MAJOR)"
+          minor_pattern: '(MINOR)'
+          version_format: '${major}.${minor}'
+
+      - name: Crear rama
+        env:
+          VERSION: ${{ steps.version.outputs.version }}
+        run: |
+          git checkout -b release/$VERSION
+          git push -f -u origin release/$VERSION
+  
 
