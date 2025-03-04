@@ -6,7 +6,7 @@ on:
       - 'release/**'
 
 jobs:
-  merge:
+  mergetodevelop:
     name: Merge-develop
     runs-on: ubuntu-latest
     permissions:
@@ -20,7 +20,7 @@ jobs:
           source-branch: 'develop'
           target-branch: ${{ github.ref_name }}
 
-  test:
+  testrelease:
     name: Test
     uses: ./.github/workflows/test.yml
 
