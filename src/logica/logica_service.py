@@ -59,6 +59,14 @@ class LogicaService(FachadaEnForma):
         except ValueError as e:
             raise e
 
+    def dar_ejercicios(self):
+        ejercicios = self.session.query(Ejercicio).all()
+        return [
+            {"id": e.id, "nombre": e.nombre, "descripcion": e.descripcion, "calorias": e.calorias,
+             "enlace_video": e.enlace_video}
+            for e in ejercicios
+        ]
+
 
     def dar_persona(self, id_persona):
         return
