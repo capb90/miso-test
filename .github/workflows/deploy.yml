@@ -36,6 +36,6 @@ jobs:
         uses: tukasz/direct-merge-action@master
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          source-branch: 'feature/**'
+          source-branch: ${{ github.ref_name }}
           target-branch: 'develop'
 
