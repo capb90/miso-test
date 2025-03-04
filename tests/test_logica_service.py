@@ -99,10 +99,6 @@ class LogicaServiceTestCase(unittest.TestCase):
         personas = self.logica.dar_personas()
         self.assertIsInstance(personas, list)
 
-    #def test_dar_persona_listado_no_vacio(self):
-    #    personas = self.logica.dar_personas()
-    #    self.assertNotEqual(len(personas), 0)
-
     def test_dar_personas_organizado(self):
         personas = self.logica.dar_personas()
         self.assertEqual(personas, sorted(personas, key=lambda p: p.nombre))
@@ -112,9 +108,6 @@ class LogicaServiceTestCase(unittest.TestCase):
         entrenamientos = self.logica.dar_entrenamientos(persona_id)
         self.assertIsInstance(entrenamientos, list)
 
-    #def test_dar_entrenameintos_listado_no_vacio(self):
-    #    entrenamientos = self.logica.dar_entrenamientos(1)
-    #    self.assertNotEqual(len(entrenamientos), 0)
 
     def test_regresar_entrenamientos(self):
         persona_id = self.personas_mock[-1].id
