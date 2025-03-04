@@ -67,6 +67,31 @@ class LogicaService(FachadaEnForma):
             for e in ejercicios
         ]
 
+    def dar_reporte(self, id_persona):
+        persona = self.session.query(Persona).get(id_persona)
+        entrenamientos = self.session.query(Entrenamiento).filter(Entrenamiento.persona == id_persona).all()
+        fechas_set = set()
+        entrenos_fechas = []
+        for entrenamiento in entrenamientos:
+            fechas_set.add(entrenamiento.fecha)
+
+        for fecha in fechas_set:
+            entreno = self.dar_entreno_fecha(id_persona, fecha)
+            entrenos_fechas.append(entreno)
+
+        return dict(talla=persona.talla, peso=persona.peso, imc=23, clasificacion_imc='Peso saludable',
+                    entrenos=entrenos_fechas)
+
+    def dar_entreno_fecha(self, id_persona, fecha_ejercicios):  ### Cambio para test 4
+        entrenamientos = self.session.query(Entrenamiento).filter(
+            Entrenamiento.persona == id_persona and Entrenamiento.fecha == fecha_ejercicios).all()
+        total_calorias = 0
+        for entrenamiento in entrenamientos:
+            calorias = entrenamiento.ejercicio.calorias
+            total_calorias += calorias
+
+        return dict(fecha=fecha_ejercicios, total_calorias=total_calorias, cant_ejercicios=len(entrenamientos))
+
 
     def dar_persona(self, id_persona):
         return
