@@ -28,19 +28,20 @@ jobs:
 
   release:
     name: Create-branch
+    needs: merge
     if: ${{ contains(github.event.head_commit.message, '[deploy]') }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout de repositorio
         uses: actions/checkout@v2
 
-      - name: Git Versionamiento semantico
+      - name: Git Semantic Version
         id: version
-        uses: paulhatch/semantic-version@latest
+        uses: paulhatch/semantic-version@v5.4.0
         with:
           major_pattern: "(MAJOR)"
-          minor_patter: "(MINOR)"
-          format: "${major}.${minor}"
+          minor_pattern: '(MINOR)'
+          version_format: '${major}.${minor}'
 
       - name: Crear rama
         env:
