@@ -84,6 +84,8 @@ class LogicaService(FachadaEnForma):
         return dict(talla=persona.talla, peso=persona.peso, imc=23, clasificacion_imc='Peso saludable',
                     entrenos=entrenos_fechas)
 
+
+
     def dar_entreno_fecha(self, id_persona, fecha_ejercicios):  ### Cambio para test 4
         entrenamientos = self.session.query(Entrenamiento).filter(
             Entrenamiento.persona == id_persona and Entrenamiento.fecha == fecha_ejercicios).all()
