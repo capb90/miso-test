@@ -34,6 +34,8 @@ jobs:
     steps:
       - name: Checkout de repositorio
         uses: actions/checkout@v2
+        with:
+          token: '${{ secrets.GH_PAT }}'
 
       - name: Git Semantic Version
         id: version
