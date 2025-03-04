@@ -1,0 +1,27 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - 'feature/**'
+
+jobs:
+  test:
+    name: Test
+    uses: ./.github/workflows/test.yml
+  merge:
+    name: Automerge
+    needs: test
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - name: merge-to-develop
+        uses: tukasz/direct-merge-action@master
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          source-branch: ${{ github.ref_name }}
+          target-branch: 'develop'
+          commit-message: ${{github.event.head_commit.message}}
+
