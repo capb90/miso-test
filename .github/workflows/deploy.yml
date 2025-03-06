@@ -1,7 +1,7 @@
 name: Deploy-main
 
 on:
-  push:
+  merge:
     branches:
       - 'develop'
 
