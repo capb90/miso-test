@@ -53,6 +53,8 @@ class LogicaService(FachadaEnForma):
 
         return ""
 
+
+
     def crear_ejercicio(self, nombre, descripcion, enlace, calorias):
         try:
             ejercicio = Ejercicio(nombre=nombre,descripcion=descripcion,calorias=float(calorias),enlace_video=enlace)
@@ -83,6 +85,8 @@ class LogicaService(FachadaEnForma):
 
         return dict(talla=persona.talla, peso=persona.peso, imc=23, clasificacion_imc='Peso saludable',
                     entrenos=entrenos_fechas)
+
+
 
     def dar_entreno_fecha(self, id_persona, fecha_ejercicios):  ### Cambio para test 4
         entrenamientos = self.session.query(Entrenamiento).filter(
