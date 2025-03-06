@@ -54,6 +54,7 @@ class LogicaService(FachadaEnForma):
         return ""
 
 
+
     def crear_ejercicio(self, nombre, descripcion, enlace, calorias):
         try:
             ejercicio = Ejercicio(nombre=nombre,descripcion=descripcion,calorias=float(calorias),enlace_video=enlace)
