@@ -19,6 +19,7 @@ class FachadaEnForma:
         '''
         raise NotImplementedError("Método no implementado")
 
+
     def validar_crear_editar_persona(self, id_persona, nombre, apellido, edad, talla, peso, brazo, pecho, cintura,
                                      pierna):
         ''' Valida que una persona se pueda crear o editar
