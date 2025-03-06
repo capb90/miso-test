@@ -24,6 +24,7 @@ jobs:
 
   test:
     name: Test
+    needs: update
     uses: ./.github/workflows/test.yml
 
   merge:
